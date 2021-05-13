@@ -94,7 +94,7 @@ def clash_hashes(hash_dict: dict):
 
     clash_hashes(hash_dict)
 
-def main():
+def clash_loop():
     """Infinite loop to keep trying to clash hashes"""
     hashing_dict = read_hash_files(ALGORITHMS)
 
@@ -105,8 +105,30 @@ def main():
     # Random seed since the multiprocess instances have the same seed.
     np.random.seed(seed=None)
 
-    while 1:
-        clash_hashes(hashing_dict)
+    # Handle keyboard interrupts to prevent dirty error messages.
+    try:
+        while 1:
+            clash_hashes(hashing_dict)
+    except KeyboardInterrupt:
+        pass
+
+
+def main():
+    """Create multiple processes to generate images which might create collisions"""
+    processes = []
+
+    # Create a process for each core on the processor.
+    for _ in range(mp.cpu_count()):
+        process = mp.Process(target=clash_loop)
+        process.start()
+        processes.append(process)
+    
+    print('Child processes created.')
+    try:
+        for process in processes:
+            process.join()
+    except KeyboardInterrupt:
+        print('Shutting down...')
 
 if __name__ == '__main__':
     main()
