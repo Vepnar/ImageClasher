@@ -12,13 +12,13 @@ from PIL import Image
 import numpy as np
 import multiprocessing as mp
 
-# Last variable in this tuple is the colour bytes
+# Last variable in this tuple are the colour bytes
 IMAGE_SIZE = (512, 512, 3)
 IMAGE_TYPES = ['PNG', 'JPEG']
 ALGORITHMS = ['MD5', 'SHA1', 'SHA2', 'SHA256']
 
 def read_hash_file(path: str) -> list:
-    """Read the file with hashes, and store the hashes in a list which is returned"""
+    """Read the file with hashes and store the hashes in a list which is returned"""
     hashes = []
     with open(path, 'r') as file:
         for line in file:
@@ -27,7 +27,7 @@ def read_hash_file(path: str) -> list:
     return hashes
 
 def read_hash_files(algorithms: list) -> dict:
-    """Read multiple hashing files and return them into a dict with the according algorithm name"""
+    """Read multiple hash files and return them into a dict with the according algorithm name"""
     hashing_dict = {}
     for algorithm in algorithms:
         file_name = f'{algorithm}.txt'
@@ -57,9 +57,10 @@ def generate_image() -> Image:
 	return image
 
 def get_image_bytes(image : Image, image_type : str) -> bytes:
-	"""Convert image object into a bytes.
-	There should be a better way of doing this.
-	Removing pillow from the process might speed up the application a lot
+	"""Convert image object into bytes.
+	
+	TODO: There should be a better way of doing this.
+	Removing pillow from the process will most likely speed up the application a lot.
     	"""
 	# Get bytes from image
 	output = io.BytesIO()
@@ -68,7 +69,7 @@ def get_image_bytes(image : Image, image_type : str) -> bytes:
 
 
 def clash_hashes(hash_dict: dict):
-    """Do a single attempt of clashing a random image with a list of hashes"""
+    """Do a single attempt of clashing a random image with the hash dict"""
 
     # Create pillow image object
     image = generate_image()
@@ -88,13 +89,13 @@ def clash_hashes(hash_dict: dict):
             # Add a random bit to prevent collisions in the path :)
             collisions.append(round(time.time() * 1000))
 
-            # Use the collisions & the random bits to generate a name for the file
+            # Use the collisions & the random bits to generate a name for the file.
             image.save('-'.join(collisions), image_format)
 
     clash_hashes(hash_dict)
 
 def main():
-    """Infinite loop to keep attempting to clash hashes"""
+    """Infinite loop to keep trying to clash hashes"""
     hashing_dict = read_hash_files(ALGORITHMS)
 
     if not hashing_dict:
