@@ -6,9 +6,14 @@ probably also apply other algorithms to prevent false positives.
 
 ## Why?
 1. Seeing if it is possible and might scare some friends. There is no harm using this application. I also didn't succeed generating a hash collision even though I have a large MD5 hash table.
-2. Measuring how good tail call optimisation is in `pypy3`
+2. Compare how good optimization is in `pypy3` compared to regular `python3`.
 
-## Running
+## Running in Python3
+- Installation `python3 -m pip install -r requirements.txt`
+- Run the program `python3 generate.py`
+
+## Running in PyPy3
+- Install [pypy3](https://www.pypy.org/download.html)
 - Installation `pypy3 -m pip install -r requirements.txt`
 - Run the program `pypy3 generate.py`
 
