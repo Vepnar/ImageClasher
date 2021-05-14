@@ -1,5 +1,5 @@
 # ImageClasher (PoC)
-Attempt hash collision in images to trigger anti-virus warnings. The idea behind this script is to generate false positives which could be send over electron based chat applications.
+Attempt hash collision in images to trigger anti-virus warnings. The idea behind this script is to generate false positives which could be send over electron based chat applications to scare your peers.
 
 This probably doesn't work with modern antivirus software. Since they don't just compare hashes of different files but
 probably also apply other algorithms to prevent false positives.
