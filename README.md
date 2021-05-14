@@ -18,7 +18,7 @@ probably also apply other algorithms to prevent false positives.
 - Run the program `pypy3 generate.py`
 
 ## What will happen:
-- The program will look file a text file called `MD5.txt`, `SHA1.txt`, `SHA2` & `SHA256` from which it will parse all the hashes it should be compared to.
+- The program will look file a text file called `MD5.txt`, `SHA1.txt`, `SHA2.txt` & `SHA256.txt` from which it will parse all the hashes it should compare the images to.
 - Then it will create sub processes of itself. The amount of sub processes depends on the amount of core your system has.
 - Every core will generate images & hash them with the algorithms show above.
 - It will compare the generated hash with the hash in the file.
@@ -28,9 +28,10 @@ probably also apply other algorithms to prevent false positives.
 
 
 ## Virus databases
-- [Virusshare.com](https://virusshare.com/hashes)
+This is a list of sources where you could get your hashes from
+- [virusshare.com](https://virusshare.com/hashes)
 - [ClamAV](https://security.stackexchange.com/questions/107833/where-does/clamav-get-its-virus-signatures)
-- [Bazaar Abuse.ch](https://bazaar.abuse.ch/)
+- [bazaar Abuse.ch](https://bazaar.abuse.ch/)
 - [Labs.inquest.net](https://labs.inquest.net/dfi)
 - [virusbay.io](https://beta.virusbay.io/sample/browse)
 - [hybrid-analyis.com](https://www.hybrid-analyis.com/fire-collections)
