@@ -17,14 +17,14 @@ IMAGE_SIZE = (512, 512, 3)
 IMAGE_TYPES = ['PNG', 'JPEG']
 ALGORITHMS = ['MD5', 'SHA1', 'SHA2', 'SHA256']
 
-def read_hash_file(path: str) -> list:
+def read_hash_file(path: str) -> set:
     """Read the file with hashes and store the hashes in a list which is returned"""
     hashes = []
     with open(path, 'r') as file:
         for line in file:
             # Convert lowercase & remove new line character.
             hashes.append(line.lower()[:-1])
-    return hashes
+    return set(hashes)  # Convert the list to a set to make the lookup quicker.
 
 def read_hash_files(algorithms: list) -> dict:
     """Read multiple hash files and return them into a dict with the according algorithm name"""
